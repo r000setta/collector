@@ -18,5 +18,25 @@
     <ClInclude Include="Object.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="gc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="VM.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Object.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="gc.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="VM.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

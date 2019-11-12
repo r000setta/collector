@@ -1,33 +1,12 @@
 #include "Jython.h"
 
-#ifndef NSMALLPOSINTS
-#define NSMALLPOSINTS 256
-#endif // !NSMALLPOSINTS
-
-#ifndef NSMALLNEGINTS
-#define NSMALLNEGINTS 5
-#endif // !NSMALLNEGINTS
-
-#if NSMALLNEGINTS+NSMALLPOSINTS>0
-static JIntObject* small_ints[NSMALLNEGINTS + NSMALLPOSINTS];
-#endif // 
-
-#define BLOCK_SIZE 1000
-#define BHEAD_SIZE 8
-#define N_INT_OBJECTS ((BLOCK_SIZE-BHEAD_SIZE)/sizeof(JIntObject))
-
-typedef struct _intBlock {
-	struct _intBlock* next;
-	JIntObject objects[N_INT_OBJECTS];
-}JIntBlock;
-
 static JIntBlock* blockList = NULL;
 static JIntObject* freeList = NULL;
 
 /*
 创建新的Block
 */
-static JIntObject* fill_free_list() {
+JIntObject* fill_free_list() {
 	JIntObject* p, * q;
 	p = (JIntObject*)malloc(sizeof(JIntBlock));
 	((JIntBlock*)p)->next = blockList;	//链接到已有的block list中
@@ -41,7 +20,7 @@ static JIntObject* fill_free_list() {
 	return p + N_INT_OBJECTS - 1;
 }
 
-static void int_dealloc(JIntObject* v) {
+void int_dealloc(JIntObject* v) {
 	v->type = (struct _typeObject*)freeList;
 	freeList = v;
 }
@@ -85,19 +64,19 @@ JObject* JInt_FromLong(long val) {
 }
 
 
-static int int_print(JIntObject* obj) {
+int int_print(JIntObject* obj) {
 	printf("%ld",obj->value);
 	return 0;
 }
 
-static long int_hash(JIntObject* obj) {
+long int_hash(JIntObject* obj) {
 	long x = obj->value;
 	if (x == -1)
 		x -= 2;
 	return x;
 }
 
-static JObject* int_add(JIntObject* v, JIntObject* w) {
+JObject* int_add(JIntObject* v, JIntObject* w) {
 	register long a, b, x;
 	a = v->value;
 	b = w->value;
@@ -105,7 +84,7 @@ static JObject* int_add(JIntObject* v, JIntObject* w) {
 	return JInt_FromLong(x);
 }
 
-static JObject* int_mul(JIntObject* v, JIntObject* w) {
+JObject* int_mul(JIntObject* v, JIntObject* w) {
 	register long a, b, x;
 	a = v->value;
 	b = w->value;
@@ -113,7 +92,7 @@ static JObject* int_mul(JIntObject* v, JIntObject* w) {
 	return JInt_FromLong(x);
 }
 
-static JObject* int_div(JIntObject* v, JIntObject* w) {
+JObject* int_div(JIntObject* v, JIntObject* w) {
 	register long a, b, x;
 	a = v->value;
 	b = w->value;
@@ -121,7 +100,7 @@ static JObject* int_div(JIntObject* v, JIntObject* w) {
 	return JInt_FromLong(x);
 }
 
-static JObject* int_sub(JIntObject* v, JIntObject* w) {
+JObject* int_sub(JIntObject* v, JIntObject* w) {
 	register long a, b, x;
 	a = v->value;
 	b = w->value;
@@ -129,7 +108,7 @@ static JObject* int_sub(JIntObject* v, JIntObject* w) {
 	return JInt_FromLong(x);
 }
 
-static JNumberMethods int_as_number = {
+JNumberMethods int_as_number = {
 	(binaryfunc)int_add,
 	(binaryfunc)int_sub,
 	(binaryfunc)int_mul,

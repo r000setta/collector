@@ -41,9 +41,6 @@
     <ClCompile Include="VM.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="intobject.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -51,6 +48,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="typeobject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="intobject.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

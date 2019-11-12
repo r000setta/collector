@@ -24,18 +24,33 @@
     <ClInclude Include="VM.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="intobject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Jython.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="typeobject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Object.cpp">
+    <ClCompile Include="gc.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="VM.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="intobject.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="gc.cpp">
+    <ClCompile Include="Object.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="VM.cpp">
+    <ClCompile Include="typeobject.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
